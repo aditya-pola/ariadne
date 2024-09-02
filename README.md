@@ -1,0 +1,1 @@
+Code written while following [Mazes for Programmers by James Buck](http://www.mazesforprogrammers.com/)

@@ -30,16 +30,29 @@ Grid* create_grid(int rows, int cols) {
     return grid;
 }
 
+// Function to get the opposite direction
+int get_opposite_direction(int direction) {
+    switch (direction) {
+        case NORTH: return SOUTH;
+        case SOUTH: return NORTH;
+        case EAST: return WEST;
+        case WEST: return EAST;
+        default: return -1; // Error case (shouldn't happen with proper inputs)
+    }
+}
+
 // Function to link two cells
 void link_cells(Cell* cell1, Cell* cell2, int direction) {
     cell1->links[direction] = cell2;
-    cell2->links[(direction + 2) % 4] = cell1; // Opposite direction
+    int opposite_direction = get_opposite_direction(direction);
+    cell2->links[opposite_direction] = cell1;
 }
 
 // Function to unlink two cells
 void unlink_cells(Cell* cell1, Cell* cell2, int direction) {
     cell1->links[direction] = NULL;
-    cell2->links[(direction + 2) % 4] = NULL;
+    int opposite_direction = get_opposite_direction(direction);
+    cell2->links[opposite_direction] = NULL;
 }
 
 // Function to check if two cells are linked

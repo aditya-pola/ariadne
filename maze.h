@@ -20,6 +20,7 @@ enum { NORTH, SOUTH, EAST, WEST };
 // Function declarations
 Cell* create_cell(int row, int col);
 Grid* create_grid(int rows, int cols);
+int get_opposite_direction(int direction);
 void link_cells(Cell* cell1, Cell* cell2, int direction);
 void unlink_cells(Cell* cell1, Cell* cell2, int direction);
 int are_linked(Cell* cell1, Cell* cell2);

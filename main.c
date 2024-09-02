@@ -6,8 +6,19 @@ int main() {
     Grid* grid = create_grid(4, 4);
 
     // Select the maze generation algorithm
-    // MazeGenerator algorithm = generate_maze_binary_tree;  // Change this line to switch algorithms
-    MazeGenerator algorithm = generate_maze_sidewinder;
+    MazeGenerator algorithm;
+    
+#ifdef USE_BINARY_TREE
+    algorithm = generate_maze_binary_tree;
+#elif defined(USE_SIDEWINDER)
+    algorithm = generate_maze_sidewinder;
+#endif
+
+    if (algorithm == NULL) {
+        // Default to binary tree or some other algorithm
+        printf("No specific algorithm defined. Using default: Binary Tree.\n");
+        algorithm = generate_maze_binary_tree;
+    }
 
     // Generate and display the maze
     algorithm(grid);
